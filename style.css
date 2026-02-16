@@ -218,6 +218,14 @@ h1 {
 
 #contact-form button[type="submit"]:active {
     transform: translateY(1px);
-    box-shadow: 0 4px 10px rgba(233, 69, 96, 0.4);
+    box-show: 0 4px 10px rgba(233, 69, 96, 0.4);
+}
+
+/* Disqus Thread Styles */
+#disqus_thread {
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 2rem;
 }
 
