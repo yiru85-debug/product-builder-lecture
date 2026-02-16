@@ -1,45 +1,29 @@
-# To learn more about how to use Nix to configure your environment
-# see: https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
-  # Which nixpkgs channel to use.
-  channel = "stable-23.11"; # or "unstable"
-  # Use https://search.nixos.org/packages to find packages
+  # Let Nix manage packages for your environment
   packages = [
-    pkgs.nodejs_20
-    pkgs.python3
+    pkgs.nodejs_20 # Provides node, npm, npx
   ];
-  # Sets environment variables in the workspace
-  env = {};
-  idx = {
-    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
-    extensions = [
-      # "vscodevim.vim"
-      "google.gemini-cli-vscode-ide-companion"
-    ];
-    # Enable previews and customize configuration
-    previews = {
-      enable = true;
-      previews = {
-        web = {
-          command = ["python3" "-m" "http.server" "$PORT" "--bind" "0.0.0.0"];
-          manager = "web";
-        };
-      };
-    };
-    # Workspace lifecycle hooks
-    workspace = {
-      # Runs when a workspace is first created
-      onCreate = {
-        # Example: install JS dependencies from NPM
-        # npm-install = "npm install";
-        # Open editors for the following files by default, if they exist:
-        default.openFiles = [ "style.css" "main.js" "index.html" ];
-      };
-      # Runs when the workspace is (re)started
-      onStart = {
-        # Example: start a background task to watch and re-build backend code
-        # watch-backend = "npm run watch-backend";
-      };
-    };
+  # Set environment variables
+  env = {
+    # Example:
+    # GREET = "Hello, Nix!";
   };
+  # Create a shell alias
+  # shellAliases = {
+  #   g = "git";
+  # };
+  # Run a command when the environment starts
+  # startup.command = "echo 'Welcome to your new environment!'";
+
+  # Configure the preview panel
+  previews = [
+    {
+      # The name of the preview panel
+      name = "web";
+      # The command to run to start the preview server
+      command = "npx http-server -p $PORT -c-1";
+      # The port to expose on the preview panel
+      port = 8080;
+    }
+  ];
 }
