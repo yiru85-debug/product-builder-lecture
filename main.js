@@ -1,3 +1,15 @@
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    if (body.classList.contains('light-mode')) {
+        themeToggle.textContent = 'Switch to Dark Mode';
+    } else {
+        themeToggle.textContent = 'Switch to Light Mode';
+    }
+});
+
 const generateBtn = document.getElementById('generate-btn');
 const numberElements = document.querySelectorAll('.number');
 
